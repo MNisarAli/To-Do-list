@@ -22,4 +22,3 @@ toDoList.forEach((item) => {
     <i class="fa-solid fa-ellipsis-vertical"></i>`;
   todoContainer.appendChild(listItem);
 });
-
