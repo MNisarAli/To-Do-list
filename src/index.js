@@ -1,24 +1,16 @@
 import './style.css';
+import Tasks from './taskUpdate.js';
 
-const todoContainer = document.querySelector('#todo-list');
-const toDoList = [
-  {
-    description: 'wash the dishes',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'complete To Do list project',
-    completed: false,
-    index: 1,
-  },
-];
-toDoList.forEach((item) => {
-  const listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <label for="checkbox">
-      <input class="checkbox" type="checkbox" id="${item.index}"> ${item.description}
-    </label>
-    <i class="fa-solid fa-ellipsis-vertical"></i>`;
-  todoContainer.appendChild(listItem);
+const tasks = new Tasks();
+
+// Add New Task In List.
+const newInput = document.querySelector('#new-input');
+newInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && newInput.value) {
+    tasks.addTask(newInput.value);
+    newInput.value = '';
+  }
 });
+
+// On Page Load Display Tasks From Local Storage.
+window.addEventListener('DOMContentLoaded', () => tasks.displayList());
