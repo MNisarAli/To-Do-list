@@ -5,16 +5,15 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
-  margin-top: 25vh;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
   box-shadow: 0 2px 8px 0 rgb(0 0 0 / 60%);
-  width: 92%;
+  margin-top: 20vh;
   max-width: 500px;
+  width: 92%;
 }
 
 #headline {
@@ -22,7 +21,8 @@ main {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding: 10px 20px;
+  border: 1px solid #f6f6f6;
+  padding: 5px 20px;
   width: 100%;
 }
 
@@ -41,13 +41,14 @@ input:hover {
   cursor: pointer;
 }
 
-#item {
+#new-input {
   font-size: 15px;
-  border: 1px solid #e9ecef;
-  padding: 20px;
+  border: 1px solid #f6f6f6;
+  padding: 12px 20px;
+  outline: none;
 }
 
-#item::placeholder {
+#new-input::placeholder {
   font-style: italic;
   opacity: 0.7;
 }
@@ -61,16 +62,30 @@ input:hover {
 #todo-list li {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #e9ecef;
+  align-items: center;
+  border: 1px solid #f6f6f6;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 12px 20px;
+}
+
+div.label-container {
+  display: flex;
+  gap: 5px;
+}
+
+div input.to-do {
+  font-size: 15px;
+  font-weight: 300;
+  font-family: inherit;
+  outline: none;
+  border: none;
 }
 
 #clear-completed {
   font-size: 15px;
   text-align: center;
   cursor: pointer;
-  padding: 20px;
+  padding: 18px;
   opacity: 0.5;
   width: 100%;
 }
