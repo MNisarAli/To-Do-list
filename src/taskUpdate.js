@@ -1,3 +1,7 @@
+import UserActions from './userActions.js';
+
+const userAction = new UserActions();
+
 export default class Tasks {
   constructor() {
     this.toDoList = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -5,6 +9,15 @@ export default class Tasks {
 
   // Function displayTasks.
   displayList = () => {
+    const newInput = document.querySelector('#new-input');
+    newInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && newInput.value) {
+        this.addTask(newInput.value);
+        newInput.value = '';
+      }
+    });
+
+    // Add New Task In List.
     const toDoContainer = document.querySelector('#todo-list');
     toDoContainer.innerHTML = '';
     this.toDoList.forEach((item) => {
