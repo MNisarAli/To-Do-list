@@ -1,5 +1,4 @@
 export default class UserActions {
-
   // Mark Task As Completed & Update Its Object's Value For Completed Key.
   completeTask = (items) => {
     const task = document.querySelectorAll('.label-container');
