@@ -89,3 +89,11 @@ div input.to-do {
   opacity: 0.5;
   width: 100%;
 }
+
+.checked .label-container {
+  opacity: 0.5;
+}
+
+.checked .to-do {
+  text-decoration: line-through;
+}

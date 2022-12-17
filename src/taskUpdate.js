@@ -1,3 +1,7 @@
+import UserActions from './userActions.js';
+
+const userAction = new UserActions();
+
 export default class Tasks {
   constructor() {
     this.toDoList = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -5,14 +9,26 @@ export default class Tasks {
 
   // Function displayTasks.
   displayList = () => {
+    const newInput = document.querySelector('#new-input');
+    newInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && newInput.value) {
+        this.addTask(newInput.value);
+        newInput.value = '';
+      }
+    });
+
+    // Add New Task In List.
     const toDoContainer = document.querySelector('#todo-list');
     toDoContainer.innerHTML = '';
     this.toDoList.forEach((item) => {
       const listItem = document.createElement('li');
+      if (item.completed === true) {
+        listItem.classList.add('checked');
+      }
       listItem.innerHTML = `
         <div class="label-container">
           <label for="checkbox">
-            <input type="checkbox" id="${item.index}">
+            <input type="checkbox" id="${item.index}" ${item.completed ? 'checked' : ''}>
           </label>
           <label for="to-do">
             <input class="to-do" type="text" value="${item.description}">
@@ -44,6 +60,12 @@ export default class Tasks {
         this.removeTask(index);
       });
     });
+
+    // Mark A Task As Completed
+    userAction.completeTask(this.toDoList);
+
+    // Clear All Completed Tasks
+    userAction.clearAllCompleted(this.toDoList);
 
     // Refresh The To-Do List.
     const refreshBtn = document.querySelector('#refresh');
