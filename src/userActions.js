@@ -1,13 +1,11 @@
 export default class UserActions {
   // Mark Task As Completed & Update Its Object's Value For Completed Key.
   completeTask = (items) => {
-    const task = document.querySelectorAll('.label-container');
+    const task = document.querySelectorAll('li');
     const checkboxes = document.querySelectorAll('input[type=checkbox]');
-    const toDo = document.querySelectorAll('.to-do');
     checkboxes.forEach((checkbox, index) => {
       checkbox.addEventListener('click', () => {
-        task[index].classList.toggle('opacity');
-        toDo[index].classList.toggle('decoration');
+        task[index].classList.toggle('checked');
         items[index].completed = !items[index].completed;
         localStorage.setItem('tasks', JSON.stringify(items));
       });
@@ -18,8 +16,8 @@ export default class UserActions {
   clearAllCompleted = (items) => {
     const clearAllBtn = document.querySelector('#clear-completed');
     clearAllBtn.addEventListener('click', () => {
-      items = items.filter((item) => item.completed === false);
-      localStorage.setItem('tasks', JSON.stringify(items));
+      const remainingItems = items.filter((item) => !item.completed);
+      localStorage.setItem('tasks', JSON.stringify(remainingItems));
       document.location.reload();
     });
   }

@@ -90,10 +90,10 @@ div input.to-do {
   width: 100%;
 }
 
-.label-container.opacity {
+.checked .label-container {
   opacity: 0.5;
 }
 
-.to-do.decoration {
+.checked .to-do {
   text-decoration: line-through;
 }

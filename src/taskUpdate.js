@@ -22,10 +22,13 @@ export default class Tasks {
     toDoContainer.innerHTML = '';
     this.toDoList.forEach((item) => {
       const listItem = document.createElement('li');
+      if (item.completed === true) {
+        listItem.classList.add('checked');
+      }
       listItem.innerHTML = `
         <div class="label-container">
           <label for="checkbox">
-            <input type="checkbox" id="${item.index}">
+            <input type="checkbox" id="${item.index}" ${item.completed ? 'checked' : ''}>
           </label>
           <label for="to-do">
             <input class="to-do" type="text" value="${item.description}">
