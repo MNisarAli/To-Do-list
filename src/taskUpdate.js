@@ -58,6 +58,9 @@ export default class Tasks {
       });
     });
 
+    // Mark A Task As Completed
+    userAction.completeTask(this.toDoList);
+
     // Refresh The To-Do List.
     const refreshBtn = document.querySelector('#refresh');
     refreshBtn.addEventListener('click', () => {

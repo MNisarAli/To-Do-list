@@ -8,6 +8,8 @@ export default class UserActions {
       checkbox.addEventListener('click', () => {
         task[index].classList.toggle('opacity');
         toDo[index].classList.toggle('decoration');
+        items[index].completed = !items[index].completed;
+        localStorage.setItem('tasks', JSON.stringify(items));
       });
     });
   }
