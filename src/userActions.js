@@ -1,4 +1,5 @@
 export default class UserActions {
+
   // Mark Task As Completed & Update Its Object's Value For Completed Key.
   completeTask = (items) => {
     const task = document.querySelectorAll('.label-container');
@@ -11,6 +12,16 @@ export default class UserActions {
         items[index].completed = !items[index].completed;
         localStorage.setItem('tasks', JSON.stringify(items));
       });
+    });
+  }
+
+  // Clear All Completed Tasks
+  clearAllCompleted = (items) => {
+    const clearAllBtn = document.querySelector('#clear-completed');
+    clearAllBtn.addEventListener('click', () => {
+      items = items.filter((item) => item.completed === false);
+      localStorage.setItem('tasks', JSON.stringify(items));
+      document.location.reload();
     });
   }
 }
