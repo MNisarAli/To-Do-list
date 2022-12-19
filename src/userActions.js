@@ -13,11 +13,16 @@ export default class UserActions {
   }
 
   // Clear All Completed Tasks
-  clearAllCompleted = (items) => {
+  clearAllCompleted = (toDoList) => {
     const clearAllBtn = document.querySelector('#clear-completed');
     clearAllBtn.addEventListener('click', () => {
-      const remainingItems = items.filter((item) => !item.completed);
-      localStorage.setItem('tasks', JSON.stringify(remainingItems));
+      const remainingItems = toDoList.filter((item) => !item.completed);
+      const remainingTasks = [];
+      remainingItems.forEach((task) => {
+        const remainingTask = { ...task, index: (remainingTasks.length).toString() };
+        remainingTasks.push(remainingTask);
+      });
+      localStorage.setItem('tasks', JSON.stringify(remainingTasks));
       document.location.reload();
     });
   }
