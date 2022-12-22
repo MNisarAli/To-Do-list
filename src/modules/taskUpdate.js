@@ -66,13 +66,10 @@ export default class Tasks {
 
     // Clear All Completed Tasks
     userAction.clearAllCompleted(this.toDoList);
-
-    // Refresh The To-Do List.
-    const refreshBtn = document.querySelector('#refresh');
-    refreshBtn.addEventListener('click', () => {
-      document.location.reload();
-    });
   }
+
+  // Set Items To Local Storage
+  setLocalStorage = () => localStorage.setItem('tasks', JSON.stringify(this.toDoList));
 
   // Add Task In Local Storage.
   addTask = (value) => {
@@ -82,14 +79,14 @@ export default class Tasks {
       index: this.toDoList.length,
     };
     this.toDoList.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.setLocalStorage();
     this.displayList();
   }
 
   // Update Task In Local Storage.
   updateTask = (value, index) => {
     this.toDoList[index].description = value;
-    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.setLocalStorage();
     this.displayList();
   }
 
@@ -99,7 +96,7 @@ export default class Tasks {
     for (let i = 0; i < this.toDoList.length; i += 1) {
       this.toDoList[i].index = i;
     }
-    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.setLocalStorage();
     this.displayList();
   }
 }

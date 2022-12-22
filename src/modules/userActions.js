@@ -19,7 +19,7 @@ export default class UserActions {
       const remainingItems = toDoList.filter((item) => !item.completed);
       const remainingTasks = [];
       remainingItems.forEach((task) => {
-        const remainingTask = { ...task, index: (remainingTasks.length).toString() };
+        const remainingTask = { ...task, index: (remainingTasks.length) };
         remainingTasks.push(remainingTask);
       });
       localStorage.setItem('tasks', JSON.stringify(remainingTasks));
