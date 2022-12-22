@@ -27,8 +27,8 @@ describe('tasks', () => {
       const value = 'Task 1';
       tasks.addTask(value);
       expect(tasks.toDoList[0]).toHaveProperty('description', value);
-      expect(tasks.toDoList[0]).toHaveProperty('completed', value);
-      expect(tasks.toDoList[0]).toHaveProperty('index', value);
+      expect(tasks.toDoList[0]).toHaveProperty('completed', false);
+      expect(tasks.toDoList[0]).toHaveProperty('index', 0);
     });
     it('should call the localStorage function', () => {
       tasks.toDoList = [];

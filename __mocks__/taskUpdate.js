@@ -1,5 +1,12 @@
 import UserActions from '../src/modules/userActions.js';
 
+const jsdom = require('jsdom');
+
+const { JSDOM } = jsdom;
+
+const dom = new JSDOM('');
+global.document = dom.window.document;
+
 const userAction = new UserActions();
 
 export default class Tasks {
@@ -10,16 +17,20 @@ export default class Tasks {
   // Function displayTasks.
   displayList = () => {
     const newInput = document.querySelector('#new-input');
-    newInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && newInput.value) {
-        this.addTask(newInput.value);
-        newInput.value = '';
-      }
-    });
+    if (newInput && newInput.addEventListener) {
+      newInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && newInput.value) {
+          this.addTask(newInput.value);
+          newInput.value = '';
+        }
+      });
+    }
 
     // Add New Task In List.
     const toDoContainer = document.querySelector('#todo-list');
-    toDoContainer.innerHTML = '';
+    if (toDoContainer) {
+      toDoContainer.innerHTML = '';
+    }
     this.toDoList.forEach((item) => {
       const listItem = document.createElement('li');
       if (item.completed === true) {
@@ -35,7 +46,9 @@ export default class Tasks {
           </label>
         </div>
         <i class="fas fa-trash-can delete-task"></i>`;
-      toDoContainer.appendChild(listItem);
+      if (toDoContainer) {
+        toDoContainer.appendChild(listItem);
+      }
     });
 
     // Update Task.
