@@ -15,15 +15,17 @@ export default class UserActions {
   // Clear All Completed Tasks
   clearAllCompleted = (toDoList) => {
     const clearAllBtn = document.querySelector('#clear-completed');
-    clearAllBtn.addEventListener('click', () => {
-      const remainingItems = toDoList.filter((item) => !item.completed);
-      const remainingTasks = [];
-      remainingItems.forEach((task) => {
-        const remainingTask = { ...task, index: (remainingTasks.length).toString() };
-        remainingTasks.push(remainingTask);
+    if (clearAllBtn) {
+      clearAllBtn.addEventListener('click', () => {
+        const remainingItems = toDoList.filter((item) => !item.completed);
+        const remainingTasks = [];
+        remainingItems.forEach((task) => {
+          const remainingTask = { ...task, index: (remainingTasks.length) };
+          remainingTasks.push(remainingTask);
+        });
+        localStorage.setItem('tasks', JSON.stringify(remainingTasks));
+        document.location.reload();
       });
-      localStorage.setItem('tasks', JSON.stringify(remainingTasks));
-      document.location.reload();
-    });
+    }
   }
 }
