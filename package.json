@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "jsdom": "^20.0.3"
   }
 }

@@ -1,4 +1,4 @@
-import UserActions from '../src/modules/userActions.js';
+import UserActions from '../modules/userActions.js';
 
 const jsdom = require('jsdom');
 

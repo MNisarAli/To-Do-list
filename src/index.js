@@ -1,5 +1,5 @@
 import './style.css';
-import Tasks from './modules/taskUpdate';
+import Tasks from './__mocks__/taskUpdate.js';
 
 const tasks = new Tasks();
 
