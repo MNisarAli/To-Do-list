@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1671731507043" clover="3.2.0">
-  <project timestamp="1671731507043" name="All files">
+<coverage generated="1671771679752" clover="3.2.0">
+  <project timestamp="1671771679752" name="All files">
     <metrics statements="19" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2" elements="28" coveredelements="10" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1"/>
     <file name="userActions.js" path="/Users/mutai/To-Do-list/src/modules/userActions.js">
       <metrics statements="19" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2"/>
