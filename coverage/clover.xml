@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <coverage generated="1671864279097" clover="3.2.0">
   <project timestamp="1671864279098" name="All files">
+=======
+<coverage generated="1671865902238" clover="3.2.0">
+  <project timestamp="1671865902238" name="All files">
+>>>>>>> b3dc76d (Made changes to the mock directory)
     <metrics statements="19" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2" elements="28" coveredelements="10" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1"/>
     <file name="userActions.js" path="D:\Coding\Microverse Full Program\Module-2\Week-3\To-Do-list\src\modules\userActions.js">
       <metrics statements="19" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2"/>

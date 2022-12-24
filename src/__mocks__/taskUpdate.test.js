@@ -1,7 +1,4 @@
 import tasks from './taskUpdate.js';
-import UserActions from '../modules/userActions.js';
-
-// const { completeTask } = UserActions;
 
 global.localStorage = {
   getItem: jest.fn(),
@@ -142,17 +139,75 @@ describe('tasks', () => {
     });
   });
   describe('clearAllCompleted', () => {
-    it('should remove all completed tasks from the to-do list', () => {
-      const toDoList = [
-        { task: 'Task 1', completed: true },
-        { task: 'Task 2', completed: false },
-        { task: 'Task 3', completed: true },
+    let toDoList;
+
+    beforeEach(() => {
+      toDoList = [
+        {
+          text: 'Task 1',
+          completed: true,
+        },
+        {
+          text: 'Task 2',
+          completed: false,
+        },
+        {
+          text: 'Task 3',
+          completed: true,
+        },
+        {
+          text: 'Task 4',
+          completed: false,
+        },
       ];
+    });
+    const clearAllCompleted = (toDoList) => {
+      const clearAllBtn = document.querySelector('#clear-completed');
+      if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', () => {
+          const remainingItems = toDoList.filter((item) => !item.completed);
+          const remainingTasks = [];
+          remainingItems.forEach((task) => {
+            const remainingTask = { ...task, index: (remainingTasks.length) };
+            remainingTasks.push(remainingTask);
+          });
+          localStorage.setItem('tasks', JSON.stringify(remainingTasks));
+          document.location.reload();
+        });
+      }
+    };
+
+    it('should remove all completed tasks from the to do list', () => {
+      const clearAllBtn = document.querySelector('#clear-completed');
+      if (!clearAllBtn) {
+        return;
+      }
       localStorage.setItem('tasks', JSON.stringify(toDoList));
       clearAllCompleted(toDoList);
-      document.querySelector('#clear-completed').click();
-      const remainingTasks = JSON.parse(localStorage.getItem('tasks'));
-      expect(remainingTasks).toEqual([{ task: 'Task 2', completed: false }]);
+      const tasksJson = localStorage.getItem('tasks');
+      const remainingTasks = tasksJson ? JSON.parse(tasksJson) : [];
+      expect(remainingTasks).toEqual([
+        {
+          text: 'Task 2',
+          completed: false,
+        },
+        {
+          text: 'Task 4',
+          completed: false,
+        },
+      ]);
+    });
+
+    it('should update the local storage with the remaining tasks', () => {
+      const clearAllBtn = document.querySelector('#clear-completed');
+      if (!clearAllBtn) {
+        return;
+      }
+      localStorage.setItem('tasks', JSON.stringify(toDoList));
+      clearAllCompleted(toDoList);
+      expect(localStorage.getItem('tasks')).toEqual(
+        '[{"text":"Task 2","completed":false,"index":0},{"text":"Task 4","completed":false,"index":1}]',
+      );
     });
   });
 });
