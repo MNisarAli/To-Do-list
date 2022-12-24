@@ -10,10 +10,6 @@ global.document = dom.window.document;
 const userAction = new UserActions();
 
 export default class Tasks {
-  // constructor() {
-  //   this.toDoList = JSON.parse(localStorage.getItem('tasks')) || [];
-  // }
-
   // Function displayTasks.
   displayList = () => {
     const newInput = document.querySelector('#new-input');
