@@ -93,12 +93,22 @@ describe('tasks', () => {
     });
   });
 
-  test('Should update task in toDoList', () => {
-    tasks.toDoList = [{ description: 'Task 1', completed: false, index: 0 }];
-
-    tasks.updateTask('Updated Task 1', 0);
-
-    expect(tasks.toDoList).toEqual([{ description: 'Updated Task 1', completed: false, index: 0 }]);
+  describe('updateTask', () => {
+    it('should update the task with the given index in the toDoList array', () => {
+      tasks.toDoList = [{
+        description: 'Buy groceries',
+        completed: false,
+        index: 0,
+      },
+      {
+        description: 'Do laundry',
+        completed: false,
+        index: 1,
+      },
+      ];
+      tasks.updateTask('Do dishes', 1);
+      expect(tasks.toDoList[1].description).toEqual('Do dishes');
+    });
   });
 
   describe('completeTask', () => {
