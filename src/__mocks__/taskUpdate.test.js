@@ -95,6 +95,15 @@ describe('tasks', () => {
       expect(instance.toDoList[1].index).toEqual(1);
     });
   });
+
+  test('Should update task in toDoList', () => {
+    tasks.toDoList = [{ description: 'Task 1', completed: false, index: 0 }];
+
+    tasks.updateTask('Updated Task 1', 0);
+
+    expect(tasks.toDoList).toEqual([{ description: 'Updated Task 1', completed: false, index: 0 }]);
+  });
+
   describe('completeTask', () => {
     it('toggles the completed status of the items and updates the DOM', () => {
       const items = [
