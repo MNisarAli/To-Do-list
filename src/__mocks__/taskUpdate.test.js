@@ -1,6 +1,7 @@
 import tasks from './taskUpdate.js';
+import UserActions from '../modules/userActions.js';
 
-// const { removeTask, toDoList } = tasks;
+// const { completeTask } = UserActions;
 
 global.localStorage = {
   getItem: jest.fn(),
@@ -92,6 +93,57 @@ describe('tasks', () => {
       };
       instance.removeTask(1);
       expect(instance.toDoList[1].index).toEqual(1);
+    });
+  });
+  describe('completeTask', () => {
+    it('toggles the completed status of the items and updates the DOM', () => {
+      const items = [
+        { name: 'Task 1', completed: false },
+        { name: 'Task 2', completed: false },
+      ];
+      const tasks = document.createElement('ul');
+      items.forEach(() => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        li.appendChild(checkbox);
+        tasks.appendChild(li);
+      });
+      document.body.appendChild(tasks);
+      const completeTask = (items) => {
+        const task = document.querySelectorAll('li');
+        const checkboxes = document.querySelectorAll('input[type=checkbox]');
+        checkboxes.forEach((checkbox, index) => {
+          checkbox.addEventListener('click', () => {
+            task[index].classList.toggle('checked');
+            items[index].completed = !items[index].completed;
+            localStorage.setItem('tasks', JSON.stringify(items));
+          });
+        });
+      };
+
+      completeTask(items);
+      const checkboxes = document.querySelectorAll('input[type=checkbox]');
+      checkboxes[0].click();
+      expect(items[0].completed).toBe(true);
+      expect(tasks.children[0].classList.contains('checked')).toBe(true);
+      checkboxes[1].click();
+      expect(items[1].completed).toBe(true);
+      expect(tasks.children[1].classList.contains('checked')).toBe(true);
+    });
+  });
+  describe('clearAllCompleted', () => {
+    it('should remove all completed tasks from the to-do list', () => {
+      const toDoList = [
+        { task: 'Task 1', completed: true },
+        { task: 'Task 2', completed: false },
+        { task: 'Task 3', completed: true },
+      ];
+      localStorage.setItem('tasks', JSON.stringify(toDoList));
+      clearAllCompleted(toDoList);
+      document.querySelector('#clear-completed').click();
+      const remainingTasks = JSON.parse(localStorage.getItem('tasks'));
+      expect(remainingTasks).toEqual([{ task: 'Task 2', completed: false }]);
     });
   });
 });

@@ -10,7 +10,6 @@ global.document = dom.window.document;
 const userAction = new UserActions();
 
 export default class Tasks {
-
   // Function displayTasks.
   displayList = () => {
     const newInput = document.querySelector('#new-input');
